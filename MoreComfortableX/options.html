@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MoreConfortableX</title>
+  <style>
+    body { padding: 20px; font-family: sans-serif; width: 300px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input { width: 100%; padding: 8px; margin-bottom: 15px; box-sizing: border-box; }
+    button { width: 100%; padding: 10px; cursor: pointer; background: #1d9bf0; color: white; border: none; border-radius: 4px; }
+    #status { color: green; font-size: 0.9em; }
+    @media (prefers-color-scheme: dark) {
+        body { background-color: #000; color: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <div display:inline-block><label>現在の設定値:</label><label id="curListId"></label></div>
+  <label for="listId">リストID:</label>
+  <input type="text" id="listId" placeholder="例: 123456789">
+
+  <button id="save">保存する</button>
+  <p id="status"></p>
+
+  <script src="options.js"></script>
+</body>
+</html>

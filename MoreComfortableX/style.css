@@ -1,0 +1,19 @@
+/* 右側のトレンド・おすすめユーザーを非表示 */
+[data-testid="sidebarColumn"] {
+    display: none !important;
+}
+
+/* タイムラインの幅を調整（サイドバーが消えた分、中央に寄せる） */
+main {
+    align-items: center !important;
+}
+
+/* ホーム画面の「おすすめ/フォロー中」のタブ選択バーを非表示にする */
+
+.hide-tabs [data-testid="ScrollSnap-List"] {
+    display: none !important;
+}
+
+#my-order-switcher button:hover {
+    background-color: rgba(29, 155, 240, 0.1) !important;
+}
