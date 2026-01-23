@@ -116,9 +116,16 @@ function mainLoop() {
 
     const screenName = getScreenName();
     if (screenName) {
-        const commBtn = document.querySelector('nav a[href$="/communities"]:not([data-is-custom-link="true"])');
+        const commBtn = document.querySelector('nav a[href$="/premium_sign_up"]:not([data-is-custom-link="true"])');
         if (commBtn) {
-            const listLink = `https://x.com/${screenName}/lists`;
+            chrome.storage.sync.get(['targetListId'], (result) => {
+                const listId = result.targetListId;
+                let listLink = "";
+                if (listId) {
+                    listLink = `https://x.com/i/lists/${listId}`;
+                } else {
+                    listLink = `https://x.com/${screenName}/lists`;
+                }
                 const svg = commBtn.querySelector('svg');
                 if (svg && !svg.dataset.modified) {
                     svg.innerHTML = LIST_SVG_PATH;
@@ -126,8 +133,17 @@ function mainLoop() {
                 }
                 commBtn.setAttribute('href', listLink);
                 commBtn.setAttribute('aria-label', 'リスト');
+                commBtn.onclick = (e) => {
+                    e.preventDefault();
+                    // 既にそのURLにいる場合はリロードを防ぐ
+                    if (window.location.href !== listLink) {
+                    window.location.href = listLink;
+                    }
+                }
+            });
         }
-        injectCommunityToMoreMenu();
+        // もっと見るからコミュニティを表示するための関数（仕様変更により現在呼び出す必要なし）
+        //injectCommunityToMoreMenu();
     }
 }
 
